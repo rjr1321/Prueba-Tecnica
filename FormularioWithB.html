@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <meta charset="utf-8"/>
+        <title>
+            Formulario
+        </title>
+        <style>
+
+          
+            
+        </style>
+    </head>
+    <body onload="getData()">
+        <div class="container"  >
+            <div class="form">
+                <h2>Formulario</h2>
+                    <div class="form">
+                        <form onsubmit="addRow();" id="form" class="form" >
+                            <table >
+                                <tr>
+                                   <th> <label for="name">Nombre</label></th>
+                                   <th><input id="name" type="text" placeholder="Jonh" required></th>
+                                   <th><label for="lastName">Apellido</label></th>
+                                   <th><input id="lastName" type="text" placeholder="doe" required></th>
+                                </tr>
+                                <tr>
+                                    <th><label for="email">Email</label></th>
+                                    <th><input type="email" id="email" name="email" placeholder="jonhdoe@mail.com" required></th>
+                                    <th><label for="Tel">Telefono</label></th>
+                                    <th><input id="Tel" type="tel" placeholder="8091111111" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"></th>         
+                                </tr>
+                                
+                            </table>
+                            <br>
+                            <input type="submit" name="submit" value="submit" id="submit">
+                            <input type="reset" name="reset" value="reset" id="reset" onclick="resetear()">
+                        </form>
+                    </div>
+            </div>
+            <div class="list_space">
+                    <div class="list">
+                        <h2>Informacion</h2>
+                        <table id="lista" class="table">
+                            <tr class="row" >
+                                <th class="cell">Nombre</th>
+                                <th class="cell">Apellido</th>
+                                <th class="cell">Email</th>
+                                <th class="cell">Telefono</th>
+                                <th class="cell">Acciones</th>
+                                
+                            </tr>
+
+                        </table>
+
+                        <h3 id="prueba"></h3>
+                        
+                    </div>
+
+            </div>
+
+
+        </div>
+
+        
+    </body>
+    <script>
+        var arr = [];
+        let i = null;
+        let rowPicker=null;
+
+
+        
+   
+        function getData(){
+            var row = localStorage.getItem("localData");
+            if(row !== null){
+            arr = JSON.parse(row)
+            setOnTableData()
+        }
+    }
+
+        function setOnTableData()
+        {
+            var lista = document.getElementById("lista")
+
+            arr.forEach(entrada => {
+                var newRow = lista.insertRow(-1);
+                newRow.setAttribute("class", "row")
+
+                    var insertName = newRow.insertCell(0);
+                    insertName.setAttribute("class", "cell")
+                    var insertLastName= newRow.insertCell(1);
+                    insertLastName.setAttribute("class", "cell")
+                    var insertEmail = newRow.insertCell(2);
+                    insertEmail.setAttribute("class", "cell")
+                    var insertTel = newRow.insertCell(3);
+                    insertTel.setAttribute("class", "cell")
+
+
+                            //boton Eliminar
+                    var buttonDelete = document.createElement("button");
+                    buttonDelete.setAttribute("onclick", "deleteRow(this)")
+                    buttonDelete.setAttribute("class", "buttonDelete")
+                    buttonDelete.innerHTML = "Eliminar"
+
+                    //boton Modificar
+                    var buttonEdit =  document.createElement("button");
+                    buttonEdit.setAttribute("onclick", "editRowValues(this)" )
+                    buttonEdit.setAttribute("class", "buttonEdit")
+                    buttonEdit.innerHTML= "Modificar"
+                    var insertButtons = newRow.insertCell(4)
+                    insertButtons.setAttribute("class", "cell")
+
+                    //pegar los botones en la celda
+                    insertButtons.append(buttonDelete, buttonEdit);
+
+
+                    //insertar la informacion en la celdas
+                        insertName.innerHTML= entrada.name;
+                        insertLastName.innerHTML=entrada.lastName;
+                        insertEmail.innerHTML=entrada.email;
+                        insertTel.innerHTML=entrada.tel;
+                 
+            });
+            
+
+        }
+
+        function addData(){
+            arr.push({
+                name:document.getElementById("name").value,
+                lastName:document.getElementById("lastName").value,
+                email:document.getElementById("email").value,
+                tel:document.getElementById("Tel").value
+            })
+
+
+            localStorage.setItem("localData", JSON.stringify(arr))
+        }
+
+        
+
+
+        function addRow() {
+           
+            //crear la columna y introducir las celdas
+            var lista = document.getElementById("lista");
+            var newRow = lista.insertRow(-1);
+
+            var insertName = newRow.insertCell(0);
+            insertName.setAttribute("class", "cell")
+            var insertLastName= newRow.insertCell(1);
+            insertLastName.setAttribute("class", "cell")
+            var insertEmail = newRow.insertCell(2);
+            insertEmail.setAttribute("class", "cell")
+            var insertTel = newRow.insertCell(3);
+            insertTel.setAttribute("class", "cell")
+          
+
+            //crear los botones y asignarlos a una celda
+
+            //boton Eliminar
+            var buttonDelete = document.createElement("button");
+            buttonDelete.setAttribute("onclick", "deleteRow(this)")
+            buttonDelete.setAttribute("class", "buttonDelete")
+            buttonDelete.innerHTML = "Eliminar"
+
+            //boton Modificar
+            var buttonEdit =  document.createElement("button");
+            buttonEdit.setAttribute("onclick", "editRowValues(this)" )
+            buttonEdit.setAttribute("class", "buttonEdit")
+            buttonEdit.innerHTML= "Modificar"
+            var insertButtons = newRow.insertCell(4)
+            insertButtons.setAttribute("class", "cell")
+
+            //pegar los botones en la celda
+            insertButtons.append(buttonDelete, buttonEdit);
+
+
+            //insertar la informacion en la celdas
+            insertName.innerHTML= document.getElementById("name").value;
+            insertLastName.innerHTML=document.getElementById("lastName").value;
+            insertEmail.innerHTML=document.getElementById("email").value;
+            insertTel.innerHTML=document.getElementById("Tel").value;
+
+            //Subir la data en local storage
+            addData()
+           
+            //
+            resetTableValues()
+
+            var boton = document.getElementById("submit")
+            boton.setAttribute("value", "submit") 
+        }
+
+
+        function resetTableValues(){
+            var name = document.getElementById("name");
+            name.value="";
+            var lname= document.getElementById("lastName");
+            lname.value="";
+            var email=document.getElementById("email");
+            email.value="";
+            var tel=document.getElementById("Tel")
+            tel.value="";
+        }
+
+        
+        function getRowIndex(row){
+            var index=row.parentNode.parentNode
+            return index;
+        }
+
+
+        function deleteRow(row) {
+            var index = getRowIndex(row)
+            index.parentNode.removeChild(index)           
+            deleteRowFromLocal(row)
+        }
+
+
+        function deleteRowFromLocal(row){
+            var index = getRowIndex(row)
+            var position = index.rowIndex-1
+            arr.splice(position,1)
+            localStorage.setItem("localData", JSON.stringify(arr))
+        }
+
+
+
+        
+        function editRowValues(row){
+            var index = getRowIndex(row)
+            var position = index.rowIndex-1
+            
+            rowPicker=row;
+            i=position
+            //Jala la informacion de LC
+            var name = arr[position].name
+            var lname = arr[position].lastName
+            var email = arr[position].email
+            var tel = arr[position].tel
+
+
+           //Localizar y colocar los input donde se vera la informacion a modificar
+            var actualname = document.getElementById("name");
+            var actuallname= document.getElementById("lastName");      
+            var actualemail=document.getElementById("email");
+            var actualtel=document.getElementById("Tel")
+            actualname.value=name;
+            actuallname.value=lname;
+            actualemail.value=email;
+            actualtel.value=tel;
+            //Cambia el valor del boton y cambiarle el onclick
+            var boton = document.getElementById("submit")
+            boton.setAttribute("value", "Guardar")
+            var form = document.getElementById("form")
+            form.setAttribute("onsubmit", "editRowOnLocal(i, rowPicker)")
+
+            var resetButton = document.getElementById("reset")
+                        resetButton.setAttribute("value" , "Cancelar")
+
+            
+            
+        }   
+
+        function editRowOnLocal(i, row){
+            
+            var name = document.getElementById("name").value 
+            var ltname = document.getElementById("lastName").value
+            var email = document.getElementById("email").value
+            var tel = document.getElementById("Tel").value
+            var newRow =`{"name":"${name}", "lastName":"${ltname}", "email":"${email}", "tel":"${tel}"}`
+            var objt = JSON.parse(newRow)
+           
+            
+            arr.splice(i, 1, objt)   
+            localStorage.setItem("localData", JSON.stringify(arr))        
+        }
+
+        function resetear()
+        {
+            var form = document.getElementById("form")
+            form.setAttribute("onsubmit", "addRow()")
+
+            var resetButton = document.getElementById("reset")
+            resetButton.setAttribute("value" , "Reset")
+        }
+
+
+    </script>
+</html>
