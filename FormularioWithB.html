@@ -89,7 +89,7 @@
         var arr = [];
         let i = null;
         let rowPicker=null;
-
+        const lista = document.getElementById("lista");
 
         
    
@@ -103,7 +103,7 @@
 
         function setOnTableData()
         {
-            var lista = document.getElementById("lista")
+            // var lista = document.getElementById("lista")
 
             arr.forEach(entrada => {
                 var newRow = lista.insertRow(-1);
@@ -170,15 +170,15 @@
             var newRow = lista.insertRow(-1);
 
             var insertName = newRow.insertCell(0);
-            insertName.setAttribute("class", "cell")
+            insertName.setAttribute("class", "col align-self-center")
             var insertLastName= newRow.insertCell(1);
-            insertLastName.setAttribute("class", "cell")
+            insertLastName.setAttribute("class", "col align-self-center")
             var insertEmail = newRow.insertCell(2);
-            insertEmail.setAttribute("class", "cell")
+            insertEmail.setAttribute("class", "col align-self-center")
             var insertTel = newRow.insertCell(3);
-            insertTel.setAttribute("class", "cell")
+            insertTel.setAttribute("class", "col align-self-center")
           
-
+            
             //crear los botones y asignarlos a una celda
 
             //boton Eliminar
@@ -247,10 +247,7 @@
             arr.splice(position,1)
             localStorage.setItem("localData", JSON.stringify(arr))
         }
-
-
-
-        
+     
         function editRowValues(row){
             var index = getRowIndex(row)
             var position = index.rowIndex-1
