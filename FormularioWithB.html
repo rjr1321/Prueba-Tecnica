@@ -16,23 +16,42 @@
         <div class="container text-center"  >
             <div class="form">
                 <h2>Formulario</h2>
-                    <div class="form">
-                        <form onsubmit="addRow();" id="form" class="form" >
-                            <table>
-                                <tr>
+                    <div class="form align-content-center" >
+                        <form onsubmit="addRow();" id="form-inline" class="form" >
+                            <!-- <table class="table table-borderless">
+                                
+                                <tr class="row justify-content-md-center">
                                    <th> <label for="name">Nombre</label></th>
                                    <th><input id="name" type="text" placeholder="Jonh" required></th>
                                    <th><label for="lastName">Apellido</label></th>
                                    <th><input id="lastName" type="text" placeholder="doe" required></th>
                                 </tr>
-                                <tr>
+                           
+                                <tr class="row justify-content-md-center">
                                     <th><label for="email">Email</label></th>
                                     <th><input type="email" id="email" name="email" placeholder="jonhdoe@mail.com" required></th>
                                     <th><label for="Tel">Telefono</label></th>
                                     <th><input id="Tel" type="tel" placeholder="8091111111" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"></th>         
                                 </tr>
                                 
-                            </table>
+                            </table> -->
+
+                            <div class="form-row align-items-center col-sm-5 mx-auto ">
+                                <div class="col form-group">
+                                    <label for="name">Nombre</label>
+                                    <input id="name"  type="text" placeholder="Jonh" required>
+                                    <label for="lastName">Apellido</label>
+                                    <input id="lastName"  type="text" placeholder="doe" required>
+                                </div>
+                                <div class="col form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="jonhdoe@mail.com" required>
+                                    <label for="Tel">Telefono</label>
+                                    <input id="Tel" type="tel" placeholder="8091111111" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
+                                </div>
+                              </div>
+
+                              
                             <br>
                             <input type="submit" name="submit" value="submit" id="submit" class="btn btn-success btn-lg">
                             <input type="reset" name="reset" value="reset" id="reset" onclick="resetear()" class="btn btn-secondary btn-lg">
@@ -63,7 +82,7 @@
 
 
         </div>
-
+       
         
     </body>
     <script>
