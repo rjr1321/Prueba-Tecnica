@@ -7,7 +7,12 @@
             Formulario
         </title>
         <style>
+            h2{
+                margin-top: 70px;
+                margin-bottom: 30px;
+            }
 
+            button{margin-right: 5px;}
           
             
         </style>
@@ -15,27 +20,11 @@
     <body onload="getData()">
         <div class="container text-center"  >
             <div class="form">
-                <h2>Formulario</h2>
+                <h2 class="card-title">Formulario</h2>
+                
                     <div class="form align-content-center" >
                         <form onsubmit="addRow();" id="form-inline" class="form" >
-                            <!-- <table class="table table-borderless">
-                                
-                                <tr class="row justify-content-md-center">
-                                   <th> <label for="name">Nombre</label></th>
-                                   <th><input id="name" type="text" placeholder="Jonh" required></th>
-                                   <th><label for="lastName">Apellido</label></th>
-                                   <th><input id="lastName" type="text" placeholder="doe" required></th>
-                                </tr>
-                           
-                                <tr class="row justify-content-md-center">
-                                    <th><label for="email">Email</label></th>
-                                    <th><input type="email" id="email" name="email" placeholder="jonhdoe@mail.com" required></th>
-                                    <th><label for="Tel">Telefono</label></th>
-                                    <th><input id="Tel" type="tel" placeholder="8091111111" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"></th>         
-                                </tr>
-                                
-                            </table> -->
-
+                       
                             <div class="form-row align-items-center col-sm-5 mx-auto ">
                                 <div class="col form-group">
                                     <label for="name">Nombre</label>
@@ -74,7 +63,7 @@
                         
                         </table>
 
-                        <h3 id="prueba"></h3>
+                        <h2 id="prueba"></h2>
                         
                     </div>
 
@@ -110,13 +99,13 @@
                 newRow.setAttribute("class", "row justify-content-md-center")
 
                     var insertName = newRow.insertCell(0);
-                    insertName.setAttribute("class", "col align-self-center")
+                    insertName.setAttribute("class", "col")
                     var insertLastName= newRow.insertCell(1);
-                    insertLastName.setAttribute("class", "col align-self-center")
+                    insertLastName.setAttribute("class", "col ")
                     var insertEmail = newRow.insertCell(2);
-                    insertEmail.setAttribute("class", "col align-self-center")
+                    insertEmail.setAttribute("class", "col")
                     var insertTel = newRow.insertCell(3);
-                    insertTel.setAttribute("class", "col align-self-center")
+                    insertTel.setAttribute("class", "col")
 
 
                             //boton Eliminar
