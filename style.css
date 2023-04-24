@@ -1,3 +1,9 @@
 .container {
   max-width: 960px;
 }
+
+button{margin-right: 3px;}
+
+.table{
+  margin-top: 5%;
+}

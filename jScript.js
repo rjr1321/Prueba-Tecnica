@@ -47,10 +47,12 @@
                     //boton Modificar
                     var buttonEdit =  document.createElement("button");
                     buttonEdit.setAttribute("onclick", "editRowValues(this)")
-                    buttonEdit.setAttribute("class", "btn btn-warning")
+                    buttonEdit.setAttribute("class", "btn btn-warning");
+                    buttonEdit.setAttribute("data-bs-toggle", "modal");
+                    buttonEdit.setAttribute("data-bs-target", "#staticBackdrop")
                     buttonEdit.innerHTML= "Modificar"
                     var insertButtons = newRow.insertCell(4)
-                    insertButtons.setAttribute("class", "col")
+                    insertButtons.setAttribute("class", "cell")
 
                     //pegar los botones en la celda
                     insertButtons.append(buttonDelete, buttonEdit);

@@ -10,13 +10,62 @@
     </head>
     <body onload="getData()" class="bg-light">
       <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <form onsubmit="addRow();" id="form" class="form" >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Nueva entrada</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                
+                  <!-- <div class="row col-sm-5 mx-auto "> -->
+                    <!-- <div class="col form-group"> -->
+                      <div class="mb-3">
+                        <label for="name">Nombre</label>
+                        <input id="name" class="form-control"  type="text" placeholder="Jonh" required>
+                      </div>
+                        <div class="mb-3">
+                        <label for="lastName">Apellido</label>
+                        <input id="lastName" class="form-control" type="text" placeholder="doe" required>
+                      </div>
+                        <!-- </div> -->
+                    <!-- <div class="col form-group"> -->
+                      <div class="mb-3"> 
+                      <label id="lemail" for="email">Email</br></label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="jonhdoe@mail.com" required>
+                      </div> 
+                        <div class="mb-3">
+                        <label for="Tel">Telefono</label>
+                        <input id="telefono" class="form-control" type="Tel" placeholder="8091111111" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
+                      </div>
+                        <!-- </div> -->
+                  <!-- </div> -->
+                
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" id="submit" class="btn btn-primary">Listo</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        </div>
+        <!-- end Modal -->
+        
         <main>
           <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="assets/lancerLogoAzul.png" alt="" width="500" height="150">
             <h2>Listado de Lanceros</h2>
             <p class="lead">Aqui enlistaremos la gente bacana de lancer</p>
+            <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              Agregar
+            </button>
           </div>
-
+          
           <div class="table-responsive">
             <table class="table">
               <thead>
