@@ -20,6 +20,17 @@
             arr = JSON.parse(row)
             setOnTableData()
         }
+        // else{
+        //     arr.push({
+        //         name:"Nombre",
+        //         lastName:"Apellido",
+        //         email:"Email",
+        //         tel:"Telefono"
+        //     })
+
+
+        //     localStorage.setItem("localData", JSON.stringify(arr))
+        // }
     }
 
         function setOnTableData()
@@ -141,22 +152,18 @@
 
         function deleteRow(row) {
             var index = getRowIndex(row)
-            index.parentNode.removeChild(index)           
-            deleteRowFromLocal(row)
-        }
-
-        function deleteRowFromLocal(row){
-            var index = getRowIndex(row)
             var position = index.rowIndex-1
+            index.parentNode.removeChild(index)           
             arr.splice(position,1)
             localStorage.setItem("localData", JSON.stringify(arr))
         }
+
         
         function editRowValues(row){
             var index = getRowIndex(row)
             var position = index.rowIndex-1
             
-            rowPicker=row;
+
             i=position
             //Jala la informacion de LC
             var name = arr[position].name
@@ -171,19 +178,14 @@
 
             //Cambia el valor del boton y cambiarle el onclick
             btnSubmit.setAttribute("value", "Guardar")
-            form.setAttribute("onsubmit", "editRowOnLocal(i, rowPicker)")
+            form.setAttribute("onsubmit", "editRowOnLocal(i)")
             
-            btnReset.setAttribute("value" , "Cancelar")
-
-            
-            
+            btnReset.setAttribute("value" , "Cancelar")  
         }   
  
-        function editRowOnLocal(i, row){
+        function editRowOnLocal(i){
             
-            // var ltname = document.getElementById("lastName").value
-            // var email = document.getElementById("email").value
-            // var tel = document.getElementById("Tel").value
+           
             var newRow =`{"name":"${inputName.value}", "lastName":"${inputLastName.value}", "email":"${inputEmail.value}", "tel":"${inputTelefono.value}"}`
             var objt = JSON.parse(newRow)
            
