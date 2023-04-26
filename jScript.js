@@ -12,76 +12,69 @@
         const btnReset = document.getElementById("reset")
         
 
+
+        
         
    
         function getData(){
             var row = localStorage.getItem("localData");
             if(row !== null){
             arr = JSON.parse(row)
-            setOnTableData()
+            
         }
-        // else{
-        //     arr.push({
-        //         name:"Nombre",
-        //         lastName:"Apellido",
-        //         email:"Email",
-        //         tel:"Telefono"
-        //     })
-
-
-        //     localStorage.setItem("localData", JSON.stringify(arr))
-        // }
     }
 
-        function setOnTableData()
-        {
-            arr.forEach(entrada => {
-                var newRow = lista.insertRow(-1);
-                newRow.setAttribute("class", "col")
+        // function setOnTableData()
+        // {
+        //     arr.forEach(entrada => {
+        //         var newRow = lista.insertRow(-1);
+        //         newRow.setAttribute("class", "col")
 
-                    var insertName = newRow.insertCell(0);
-                    insertName.setAttribute("class", "cell")
-                    var insertLastName= newRow.insertCell(1);
-                    insertLastName.setAttribute("class", "cell")
-                    var insertEmail = newRow.insertCell(2);
-                    insertEmail.setAttribute("class", "cell")
-                    var insertTel = newRow.insertCell(3);
-                    insertTel.setAttribute("class", "cell")
-
-
-                            //boton Eliminar
-                    var buttonDelete = document.createElement("button");
-                    buttonDelete.setAttribute("onclick", "deleteRow(this)")
-                    buttonDelete.setAttribute("class", "btn btn-danger")
-                    buttonDelete.innerHTML = "Eliminar"
-
-                    //boton Modificar
-                    var buttonEdit =  document.createElement("button");
-                    buttonEdit.setAttribute("onclick", "editRowValues(this)")
-                    buttonEdit.setAttribute("class", "btn btn-warning");
-                    buttonEdit.setAttribute("data-bs-toggle", "modal");
-                    buttonEdit.setAttribute("data-bs-target", "#staticBackdrop")
-                    buttonEdit.innerHTML= "Modificar"
-                    var insertButtons = newRow.insertCell(4)
-                    insertButtons.setAttribute("class", "cell")
-
-                    //pegar los botones en la celda
-                    insertButtons.append(buttonDelete, buttonEdit);
+        //             var insertName = newRow.insertCell(0);
+        //             insertName.setAttribute("class", "cell")
+        //             var insertLastName= newRow.insertCell(1);
+        //             insertLastName.setAttribute("class", "cell")
+        //             var insertEmail = newRow.insertCell(2);
+        //             insertEmail.setAttribute("class", "cell")
+        //             var insertTel = newRow.insertCell(3);
+        //             insertTel.setAttribute("class", "cell")
 
 
-                    //insertar la informacion en la celdas
-                        insertName.innerHTML= entrada.name;
-                        insertLastName.innerHTML=entrada.lastName;
-                        insertEmail.innerHTML=entrada.email;
-                        insertTel.innerHTML=entrada.tel;
+        //                     //boton Eliminar
+        //             var buttonDelete = document.createElement("button");
+        //             buttonDelete.setAttribute("onclick", "deleteRow(this)")
+        //             buttonDelete.setAttribute("class", "btn btn-danger")
+        //             buttonDelete.innerHTML = "Eliminar"
+
+        //             //boton Modificar
+        //             var buttonEdit =  document.createElement("button");
+        //             buttonEdit.setAttribute("onclick", "editRowValues(this)")
+        //             buttonEdit.setAttribute("class", "btn btn-warning");
+        //             buttonEdit.setAttribute("data-bs-toggle", "modal");
+        //             buttonEdit.setAttribute("data-bs-target", "#staticBackdrop")
+        //             buttonEdit.innerHTML= "Modificar"
+        //             var insertButtons = newRow.insertCell(4)
+        //             insertButtons.setAttribute("class", "cell")
+
+        //             //pegar los botones en la celda
+        //             insertButtons.append(buttonDelete, buttonEdit);
+
+
+        //             //insertar la informacion en la celdas
+        //                 insertName.innerHTML= entrada.name;
+        //                 insertLastName.innerHTML=entrada.lastName;
+        //                 insertEmail.innerHTML=entrada.email;
+        //                 insertTel.innerHTML=entrada.tel;
                  
-            });
+        //     });
             
 
-        }
+
+        // }
 
         function addDataOnLocalStorage(){
             arr.push({
+                id: arr.length,
                 name:inputName.value,
                 lastName:inputLastName.value,
                 email:inputEmail.value,
@@ -90,57 +83,59 @@
 
 
             localStorage.setItem("localData", JSON.stringify(arr))
-        }
-      
-        function addRow() {
-           
-            //crear la columna y introducir las celdas;
-            var newRow = lista.insertRow(-1);
-            newRow.setAttribute("class", "col")
-            var insertName = newRow.insertCell(0);
-            insertName.setAttribute("class", "cell")
-            var insertLastName= newRow.insertCell(1);
-            insertLastName.setAttribute("class", "cell")
-            var insertEmail = newRow.insertCell(2);
-            insertEmail.setAttribute("class", "cell")
-            var insertTel = newRow.insertCell(3);
-            insertTel.setAttribute("class", "cell")
-            
-
-            //crear los botones y asignarlos a una celda
-
-            //boton Eliminar
-            var buttonDelete = document.createElement("button");
-            buttonDelete.setAttribute("onclick", "deleteRow(this)")
-            buttonDelete.setAttribute("class", "buttonDelete")
-            buttonDelete.innerHTML = "Eliminar"
-
-            //boton Modificar
-            var buttonEdit =  document.createElement("button");
-            buttonEdit.setAttribute("onclick", "editRowValues(this)" )
-            buttonEdit.setAttribute("class", "buttonEdit")
-            buttonEdit.innerHTML= "Modificar"
-            var insertButtons = newRow.insertCell(4)
-            insertButtons.setAttribute("class", "cell")
-            //pegar los botones en la celda
-            insertButtons.append(buttonDelete, buttonEdit);
-           
-
-            //insertar la informacion en la celdas
-            
-            insertName.innerHTML= inputName.value;
-            insertLastName.innerHTML=inputLastName.value;
-            insertEmail.innerHTML=inputEmail.value;
-            insertTel.innerHTML=inputTelefono.value;
-
-            //Subir la data en local storage
-            addDataOnLocalStorage()
-           
-            //
             resetTableValues()
-
             btnSubmit.setAttribute("value", "submit") 
         }
+      
+        // function addRow() {
+           
+        //     //crear la columna y introducir las celdas;
+        //     var newRow = lista.insertRow(-1);
+        //     newRow.setAttribute("class", "col")
+        //     var insertName = newRow.insertCell(0);
+        //     insertName.setAttribute("class", "cell")
+        //     var insertLastName= newRow.insertCell(1);
+        //     insertLastName.setAttribute("class", "cell")
+        //     var insertEmail = newRow.insertCell(2);
+        //     insertEmail.setAttribute("class", "cell")
+        //     var insertTel = newRow.insertCell(3);
+        //     insertTel.setAttribute("class", "cell")
+            
+
+        //     //crear los botones y asignarlos a una celda
+
+        //     //boton Eliminar
+        //     var buttonDelete = document.createElement("button");
+        //     buttonDelete.setAttribute("onclick", "deleteRow(this)")
+        //     buttonDelete.setAttribute("class", "buttonDelete")
+        //     buttonDelete.innerHTML = "Eliminar"
+
+        //     //boton Modificar
+        //     var buttonEdit =  document.createElement("button");
+        //     buttonEdit.setAttribute("onclick", "editRowValues(this)" )
+        //     buttonEdit.setAttribute("class", "buttonEdit")
+        //     buttonEdit.innerHTML= "Modificar"
+        //     var insertButtons = newRow.insertCell(4)
+        //     insertButtons.setAttribute("class", "cell")
+        //     //pegar los botones en la celda
+        //     insertButtons.append(buttonDelete, buttonEdit);
+           
+
+        //     //insertar la informacion en la celdas
+            
+        //     insertName.innerHTML= inputName.value;
+        //     insertLastName.innerHTML=inputLastName.value;
+        //     insertEmail.innerHTML=inputEmail.value;
+        //     insertTel.innerHTML=inputTelefono.value;
+
+        //     //Subir la data en local storage
+        //     addDataOnLocalStorage()
+           
+        //     //
+        //     resetTableValues()
+
+        //     btnSubmit.setAttribute("value", "submit") 
+        // }
 
         function resetTableValues(){
             
@@ -161,8 +156,8 @@
         
         function editRowValues(row){
             var index = getRowIndex(row)
-            var position = index.rowIndex-1
-            
+            var position = row.id.innerHTML
+            alert(position)
 
             i=position
             //Jala la informacion de LC
@@ -183,6 +178,7 @@
             btnReset.setAttribute("value" , "Cancelar")  
         }   
  
+        
         function editRowOnLocal(i){
             
            
@@ -195,14 +191,17 @@
             resetear();     
         }
 
+
         function resetear()
         {
             form.setAttribute("onsubmit", "addRow()")
             btnReset.setAttribute("value" , "Reset")
         }
         
+
+
         function getRowIndex(row){
             var index=row.parentNode.parentNode
             return index;
         }
-
+    

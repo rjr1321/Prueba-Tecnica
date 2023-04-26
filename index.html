@@ -7,13 +7,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="style.css" rel="stylesheet">
         <link rel="icon" href="assets/LancerFavicon-512x512.webp" sizes="192x192">
-        <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
+        <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet"/>
     </head>
-    <body onload="getData()" class="bg-light">
+    <body class="bg-light" onload="getData()">
       <div class="container">
         <!-- Modal -->
         <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-          <form onsubmit="addRow();" id="form" class="form" >
+          <form onsubmit="addDataOnLocalStorage()" id="form" class="form" >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -38,7 +38,7 @@
                       </div> 
                         <div class="mb-3">
                         <label for="Tel">Telefono</label>
-                        <input id="telefono" class="form-control" type="Tel" placeholder="8091111111" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
+                        <input id="telefono" class="form-control" type="Tel" placeholder="8090000000" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
                       </div>
 
                 
@@ -65,10 +65,10 @@
           </div>
           
           <div class="table-responsive">
-            <table class="table">
+            <table class="table" id="tabla">
               <thead>
                 <tr>
-                  <!-- <th scope="col">NickName</th> -->
+                  <th scope="col">ID</th>
                   <th scope="col">Nombre</th>
                   <th scope="col">Apellido</th>
                   <th scope="col">Email</th>
@@ -88,8 +88,41 @@
       </div>
 
     </body>
+    <script type="text/javascript" src="jScript.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="jScript.js"></script>
-    <script src="jquery-3.6.4.min.js"></script>
-    <script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js" ></script>
+
+
+    <script>
+      $(function() {
+        // Tendre que hacer el load de la data de localStorage aqui porque datatable funciona jquery y este tiene que estar en la pagina principal
+        var data= JSON.parse(localStorage.getItem("localData"));
+        
+        //le digo a dataTable en que celda va cada informacion
+        var columna = [
+          {data: "id"},
+          {data: "name"},
+          {data: "lastName"},
+          {data: "email"},
+          {data: "tel"},
+          {
+            render: function(data, type, row) {
+              return '<button onclick="deleteRow(this)" class="btn btn-danger">Eliminar</button> <button onclick="editRowValues(this)" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Modificar</button>'
+            }
+          }
+        ];
+          //Iniciar la libreria y darle la data
+
+          $("#tabla").DataTable({
+            data: data,
+            columns: columna
+          })
+
+      })
+
+     
+    </script>
 </html>
+
+
