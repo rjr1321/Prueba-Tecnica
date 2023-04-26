@@ -147,7 +147,7 @@
 
         function deleteRow(row) {
             var index = getRowIndex(row)
-            var position = index.rowIndex-1
+            var position = parseInt(index.cells[0].innerHTML)
             index.parentNode.removeChild(index)           
             arr.splice(position,1)
             localStorage.setItem("localData", JSON.stringify(arr))
@@ -156,11 +156,12 @@
         
         function editRowValues(row){
             var index = getRowIndex(row)
-            var position = row.id.innerHTML
-            alert(position)
+            var position = parseInt(index.cells[0].innerHTML)
+         
 
             i=position
             //Jala la informacion de LC
+           
             var name = arr[position].name
             var lname = arr[position].lastName
             var email = arr[position].email
@@ -182,7 +183,7 @@
         function editRowOnLocal(i){
             
            
-            var newRow =`{"name":"${inputName.value}", "lastName":"${inputLastName.value}", "email":"${inputEmail.value}", "tel":"${inputTelefono.value}"}`
+            var newRow =`{"id":"${i}","name":"${inputName.value}", "lastName":"${inputLastName.value}", "email":"${inputEmail.value}", "tel":"${inputTelefono.value}"}`
             var objt = JSON.parse(newRow)
            
             
@@ -202,6 +203,7 @@
 
         function getRowIndex(row){
             var index=row.parentNode.parentNode
+            
             return index;
         }
     
