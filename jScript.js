@@ -10,6 +10,8 @@
         const inputTelefono= document.getElementById("telefono");
         const btnSubmit= document.getElementById("submit");
         const btnReset = document.getElementById("reset")
+
+
         
 
 
