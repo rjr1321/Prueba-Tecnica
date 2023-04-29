@@ -9,10 +9,10 @@
         <link rel="icon" href="assets/LancerFavicon-512x512.webp" sizes="192x192">
         <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet"/>
         <div class="container">
-          <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <!-- <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
             <a href="https://lancergroup.org/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
               <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-              <span class="fs-4"><img id="homelogo" class="d-block mx-auto mb-4" src="assets/lancerLogoAzul.png" alt="" width="155" height="50"></span>
+              <span class="fs-4"><img id="homelogo"  src="assets/lancerLogoAzul.png" alt="logo" width="155" height="50"> <img id="homelogoMovil"  src="assets/LancerFavicon-512x512.webp" alt="logoMovil" width="100" height="100"></span>
             </a>
       
             <ul class="nav nav-pills">
@@ -23,7 +23,45 @@
               <li class="nav-item"><a href="https://lancergroup.org/sobre-de-nosotros/" class="nav-link">Sobre Nosotros</a></li>
               <li class="nav-item"><a href="https://lancergroup.org/contacto/" class="nav-link">Contacto</a></li>
             </ul>
-          </header>
+          </header> -->
+
+          <nav class="navbar navbar-expand-lg navbar-light bg-light rounded " aria-label="Ninth navbar example">
+            <div class="container-xl">
+              <a class="navbar-brand" href="https://lancergroup.org/"><span class="fs-4"><img id="homelogo"  src="assets/lancerLogoAzul.png" alt="logo" width="155" height="50"> <img id="homelogoMovil"  src="assets/LancerFavicon-512x512.webp" alt="logoMovil" width="50" height="50"></span></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07XL" aria-controls="navbarsExample07XL" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        
+              <div class="collapse navbar-collapse" id="navbarsExample07XL">
+                
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="https://lancergroup.org/">Inicio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://lancergroup.org/portafolio/">Portafolio</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://lancergroup.org/noticias/">Noticias</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://lancergroup.org/sobre-de-nosotros/">Sobre Nosotros</a>
+                  </li>
+                  
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://lancergroup.org/contacto/">Contacto</a>
+                  </li>
+                  
+                  
+                  
+                </ul>
+                <!-- <form>
+                  <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                </form> -->
+              </div>
+            </div>
+          </nav>
         </div>
 
     </head>
@@ -75,7 +113,6 @@
         
         <main>
           <div class="py-5 text-center">
-            <img id="mainImage" class="d-block mx-auto mb-4" src="assets/lancerLogoAzul.png" alt="" width="500" height="150">
             <h2>Listado de Lanceros</h2>
             <p class="lead">Aqui enlistaremos la gente bacana de lancer</p>
             <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -105,6 +142,12 @@
         </main>
         
       </div>
+      <div class="dropdown-divider"></div>
+      <footer class="footer mt-auto py-3 bg-secondary">
+        <div class="container">
+          <span>Creado y diseñado por Ronald | Copyright © 2023 - LancerGroup </span>
+        </div>
+      </footer>
       
     </body>
     

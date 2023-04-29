@@ -7,6 +7,7 @@ button{margin-right: 3px;}
 .table{
   margin-top: 5%;
   padding-bottom: 2%;
+  margin-bottom: 10%;
 }
 
 table td:nth-child(1){
@@ -49,9 +50,27 @@ table td:nth-child(1){
   outline: 0;
 }
 
+#homelogoMovil{
+  display: none;
+}
 
-@media only screen and (max-width: 523px) {
-  #mainImage{
-    
+#homelogo{
+  margin-right: 350px;
+
+}
+
+@media only screen and (max-width: 991px) {
+  #homelogo{
+    display: none;
   }
+
+  #homelogoMovil{
+    display: inline;
+    margin-right: 10%;
+  }
+}
+
+
+footer{
+  text-align: center;
 }
