@@ -26,55 +26,9 @@
         }
     }
 
-        // function setOnTableData()
-        // {
-        //     arr.forEach(entrada => {
-        //         var newRow = lista.insertRow(-1);
-        //         newRow.setAttribute("class", "col")
-
-        //             var insertName = newRow.insertCell(0);
-        //             insertName.setAttribute("class", "cell")
-        //             var insertLastName= newRow.insertCell(1);
-        //             insertLastName.setAttribute("class", "cell")
-        //             var insertEmail = newRow.insertCell(2);
-        //             insertEmail.setAttribute("class", "cell")
-        //             var insertTel = newRow.insertCell(3);
-        //             insertTel.setAttribute("class", "cell")
-
-
-        //                     //boton Eliminar
-        //             var buttonDelete = document.createElement("button");
-        //             buttonDelete.setAttribute("onclick", "deleteRow(this)")
-        //             buttonDelete.setAttribute("class", "btn btn-danger")
-        //             buttonDelete.innerHTML = "Eliminar"
-
-        //             //boton Modificar
-        //             var buttonEdit =  document.createElement("button");
-        //             buttonEdit.setAttribute("onclick", "editRowValues(this)")
-        //             buttonEdit.setAttribute("class", "btn btn-warning");
-        //             buttonEdit.setAttribute("data-bs-toggle", "modal");
-        //             buttonEdit.setAttribute("data-bs-target", "#staticBackdrop")
-        //             buttonEdit.innerHTML= "Modificar"
-        //             var insertButtons = newRow.insertCell(4)
-        //             insertButtons.setAttribute("class", "cell")
-
-        //             //pegar los botones en la celda
-        //             insertButtons.append(buttonDelete, buttonEdit);
-
-
-        //             //insertar la informacion en la celdas
-        //                 insertName.innerHTML= entrada.name;
-        //                 insertLastName.innerHTML=entrada.lastName;
-        //                 insertEmail.innerHTML=entrada.email;
-        //                 insertTel.innerHTML=entrada.tel;
-                 
-        //     });
-            
-
-
-        // }
 
         function addDataOnLocalStorage(){
+         getData();
             arr.push({
                 id: arr.length,
                 name:inputName.value,
@@ -89,55 +43,7 @@
             btnSubmit.setAttribute("value", "submit") 
         }
       
-        // function addRow() {
-           
-        //     //crear la columna y introducir las celdas;
-        //     var newRow = lista.insertRow(-1);
-        //     newRow.setAttribute("class", "col")
-        //     var insertName = newRow.insertCell(0);
-        //     insertName.setAttribute("class", "cell")
-        //     var insertLastName= newRow.insertCell(1);
-        //     insertLastName.setAttribute("class", "cell")
-        //     var insertEmail = newRow.insertCell(2);
-        //     insertEmail.setAttribute("class", "cell")
-        //     var insertTel = newRow.insertCell(3);
-        //     insertTel.setAttribute("class", "cell")
-            
-
-        //     //crear los botones y asignarlos a una celda
-
-        //     //boton Eliminar
-        //     var buttonDelete = document.createElement("button");
-        //     buttonDelete.setAttribute("onclick", "deleteRow(this)")
-        //     buttonDelete.setAttribute("class", "buttonDelete")
-        //     buttonDelete.innerHTML = "Eliminar"
-
-        //     //boton Modificar
-        //     var buttonEdit =  document.createElement("button");
-        //     buttonEdit.setAttribute("onclick", "editRowValues(this)" )
-        //     buttonEdit.setAttribute("class", "buttonEdit")
-        //     buttonEdit.innerHTML= "Modificar"
-        //     var insertButtons = newRow.insertCell(4)
-        //     insertButtons.setAttribute("class", "cell")
-        //     //pegar los botones en la celda
-        //     insertButtons.append(buttonDelete, buttonEdit);
-           
-
-        //     //insertar la informacion en la celdas
-            
-        //     insertName.innerHTML= inputName.value;
-        //     insertLastName.innerHTML=inputLastName.value;
-        //     insertEmail.innerHTML=inputEmail.value;
-        //     insertTel.innerHTML=inputTelefono.value;
-
-        //     //Subir la data en local storage
-        //     addDataOnLocalStorage()
-           
-        //     //
-        //     resetTableValues()
-
-        //     btnSubmit.setAttribute("value", "submit") 
-        // }
+     
 
         function resetTableValues(){
             
@@ -149,16 +55,31 @@
 
         function deleteRow(row) {
             var index = getRowIndex(row)
-            var position = parseInt(index.cells[0].innerHTML)
+            var position = locateById(row)
             index.parentNode.removeChild(index)           
             arr.splice(position,1)
+            
             localStorage.setItem("localData", JSON.stringify(arr))
+        }
+        
+        function locateById(row) {
+            var index = getRowIndex(row)
+            var id = parseInt(index.cells[0].innerHTML)
+            var location
+
+            for (let i = 0; i < arr.length; i++) {
+               if(id== arr[i].id){
+                location=i
+                
+               } 
+                
+            }
+            return location
         }
 
         
         function editRowValues(row){
-            var index = getRowIndex(row)
-            var position = parseInt(index.cells[0].innerHTML)
+            var position = locateById(row)
          
 
             i=position
@@ -178,7 +99,7 @@
             btnSubmit.setAttribute("value", "Guardar")
             form.setAttribute("onsubmit", "editRowOnLocal(i)")
             
-            btnReset.setAttribute("value" , "Cancelar")  
+            // btnReset.setAttribute("value" , "Cancelar")  
         }   
  
         
